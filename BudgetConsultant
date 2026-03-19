@@ -1,0 +1,41 @@
+#Virginia Tech Flex Dollar Weekly Budget Tracker
+
+def main():
+  print("Virginia Tech Flex Dollar Budget Tracker")
+  print("-" * 40)
+
+  try:
+      balance = float(input("Enter your current Flex Dollars balance: $"))
+      weeks_left = int(input("Enter how many weeks are left in the semester: "))
+      reserve = float(input("Enter how much money you want to keep as a reserve: $"))
+
+      if balance < 0 or weeks_left <= 0 or reserve < 0:
+          print("\nPlease enter valid positive numbers.")
+          return
+
+      spendable = balance - reserve
+
+      if spendable < 0:
+          print("\nYour reserve is greater than your current balance.")
+          print("You currently should not spend any Flex Dollars.")
+          return 
+
+      weekly_budget = spendable / weeks_left
+      daily_budget = weekly_budget / 7
+
+      print("\n----- Budget Summary -----")
+      print(f"Current Balance: ${balance:.2f}")
+      print(f"Reserve Amount: ${reserve:.2f}")
+      print(f"Spendable Amount: ${spendable:.2f}")
+      print(f"Weeks Left: {weeks_left}")
+      print(f"Recommended Weekly Spending: ${weekly_budget:.2f}")
+
+      if weekly_budget < 25:
+          print("\nBudget Status: Tight budget - spend carefully each week.")
+      elif weekly_budget <= 60:
+          print("\nBudget Status: Moderate budget - you have some flexibility.")
+      else:
+          print("\nBudget Status: Comfort budget - you have room to spend more than necessary")
+  except ValueError:
+      print("\nInvalid input. Please enter numbers only.")
+      
